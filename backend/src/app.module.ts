@@ -9,11 +9,11 @@ import { TaskModule } from './task/task.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: true,
-      autoSchemaFile: join(process.cwd(), 'src/cshema.gql'),
-      cors: {
-        // 全て許可
-        origin: '*',
-      },
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      // cors: {
+      //   ApolloDriverにcorsはない
+      //   origin: '*',
+      // },
     }),
     TaskModule,
   ],

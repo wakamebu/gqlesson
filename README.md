@@ -24,8 +24,19 @@ cd project/gq-lesson/backend
 npm i @nestjs/graphql @nestjs/apollo @apollo/server graphql
 
 5. Dockerの起動と確認（権限が必要のためsudo）
+
 sudo docker compose up -d
 sudo docker exec -it postgres psql -U udemy_user udemydb
 
 6.install prisma
+
 npm install prisma --save-dev
+
+7. Prismaの初期化とクライアントのインストール
+
+npx prisma init
+npm install @prisma/client
+
+8. スキーマの作成後、マイグレーションを実行
+
+npx prisma migrate dev --name init

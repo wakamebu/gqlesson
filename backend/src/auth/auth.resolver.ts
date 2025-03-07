@@ -7,11 +7,14 @@ import { GqlAuthGuard } from './guards/gql-auth.guard';
 
 @Resolver()
 export class AuthResolver {
-    constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
-    @Mutation(() => SignInResponse)
-    @UseGuards(GqlAuthGuard)
-    async signIn(@Args('signInInput') signInInput: SignInInput, @Context() context: any) {
-        return await this.authService.signIn(context.user);
-    }
+  @Mutation(() => SignInResponse)
+  @UseGuards(GqlAuthGuard)
+  async signIn(
+    @Args('signInInput') signInInput: SignInInput,
+    @Context() context: any,
+  ) {
+    return await this.authService.signIn(context.user);
+  }
 }

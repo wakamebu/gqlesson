@@ -9,29 +9,35 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Resolver()
 export class TaskResolver {
-    constructor(private readonly taskService: TaskService) {}
+  constructor(private readonly taskService: TaskService) {}
 
-    @Query(() => [TaskModel], { nullable: 'items' })
-    @UseGuards(JwtAuthGuard)
-    async getTasks(@Args('userId', { type: () => Int }) userId: number): Promise<Task[]> {
-        return await this.taskService.getTasks(userId);
-    }
+  @Query(() => [TaskModel], { nullable: 'items' })
+  @UseGuards(JwtAuthGuard)
+  async getTasks(
+    @Args('userId', { type: () => Int }) userId: number,
+  ): Promise<Task[]> {
+    return await this.taskService.getTasks(userId);
+  }
 
-    @Mutation(() => TaskModel)
-    @UseGuards(JwtAuthGuard)
-    async createTask(@Args('createTaskInput') CreateTaskInput: CreateTaskInput): Promise<Task> {
-        return await this.taskService.createTask(CreateTaskInput);
-    }
+  @Mutation(() => TaskModel)
+  @UseGuards(JwtAuthGuard)
+  async createTask(
+    @Args('createTaskInput') CreateTaskInput: CreateTaskInput,
+  ): Promise<Task> {
+    return await this.taskService.createTask(CreateTaskInput);
+  }
 
-    @Mutation(() => TaskModel)
-    @UseGuards(JwtAuthGuard)
-    async updateTask(@Args('updateTaskInput') UpdateTaskInput: UpdateTaskInput): Promise<Task> {
-        return await this.taskService.updateTask(UpdateTaskInput);
-    }
+  @Mutation(() => TaskModel)
+  @UseGuards(JwtAuthGuard)
+  async updateTask(
+    @Args('updateTaskInput') UpdateTaskInput: UpdateTaskInput,
+  ): Promise<Task> {
+    return await this.taskService.updateTask(UpdateTaskInput);
+  }
 
-    @Mutation(() => TaskModel)
-    @UseGuards(JwtAuthGuard)
-    async deleteTask(@Args('id', { type: () => Int }) id : number ): Promise<Task> {
-        return await this.taskService.deleteTask(id);
-    }
+  @Mutation(() => TaskModel)
+  @UseGuards(JwtAuthGuard)
+  async deleteTask(@Args('id', { type: () => Int }) id: number): Promise<Task> {
+    return await this.taskService.deleteTask(id);
+  }
 }

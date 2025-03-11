@@ -1,12 +1,12 @@
-import Header from "./Header"
+import Header from './Header';
 
 const Main = () => {
-  return (
-    <>
-      <Header />
-    <div >Main</div>
-    </>
-  )
-}
+	return (
+		<>
+			<Header />
+			<div>Main</div>
+		</>
+	);
+};
 
-export default Main
+export default Main;

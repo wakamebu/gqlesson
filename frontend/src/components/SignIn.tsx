@@ -27,17 +27,18 @@ export default function SignIn() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const signInInput = {
-      email,password
+      email,
+      password,
     };
     try {
       const result = await signIn({
-        variables: {signInInput}
+        variables: { signInInput },
       });
-      if(result.data) {
-        localStorage.setItem('token',result.data.signIn.accessToken);
+      if (result.data) {
+        localStorage.setItem('token', result.data.signIn.accessToken);
       }
-      localStorage.getItem('token') &&  navigate('/');
-    } catch(err: any) {
+      localStorage.getItem('token') && navigate('/');
+    } catch (err: any) {
       if (err.message === 'Unauthorized') {
         setFailSignIn(true);
         return;
@@ -76,7 +77,9 @@ export default function SignIn() {
               autoComplete="email"
               autoFocus
               value={email}
-              onChange={(e) => {setEmail(e.target.value)}}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
             />
             <TextField
               margin="normal"
@@ -88,17 +91,16 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
               value={password}
-              onChange={(e) => {setPassword(e.target.value)}}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
-              { failSignIn && <Typography color='red'>
+            {failSignIn && (
+              <Typography color="red">
                 メールアドレスまたはパスワードを確認してください。
-              </Typography>}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+              </Typography>
+            )}
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Sign In
             </Button>
             <Grid container>

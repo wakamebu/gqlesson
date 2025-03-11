@@ -1,4 +1,3 @@
 export type SignInResponse = {
-  signIn: {accessToken: string};
+  signIn: { accessToken: string };
 };
-

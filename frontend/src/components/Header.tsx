@@ -10,7 +10,7 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('signin');
-  }
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -18,7 +18,9 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             GraphQL Todo
           </Typography>
-          <Button color="inherit" onClick={handleLogout}>Logout</Button>
+          <Button color="inherit" onClick={handleLogout}>
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

@@ -4,5 +4,8 @@
     "@nestjs/apollo": "^13.0.3",
     "@nestjs/graphql": "^13.0.3",
     "graphql": "^16.10.0"
+  },
+  "devDependencies": {
+    "lint-staged": "^15.4.3"
   }
 }

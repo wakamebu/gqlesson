@@ -9,18 +9,18 @@ import client from './apolloClient';
 import { ApolloProvider } from '@apollo/client';
 
 function App() {
-	return (
-		<ApolloProvider client={client}>
-			<BrowserRouter>
-				<Routes>
-					<Route path="/signin" element={<GuestRoute children={<SignIn />} />} />
-					<Route path="/signup" element={<GuestRoute children={<SignUp />} />} />
-					<Route path="/" element={<PrivatRoute children={<Main />} />} />
-					<Route path="*" element={<NotFound />} />
-				</Routes>
-			</BrowserRouter>
-		</ApolloProvider>
-	);
+  return (
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signin" element={<GuestRoute children={<SignIn />} />} />
+          <Route path="/signup" element={<GuestRoute children={<SignUp />} />} />
+          <Route path="/" element={<PrivatRoute children={<Main />} />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </ApolloProvider>
+  );
 }
 
 export default App;

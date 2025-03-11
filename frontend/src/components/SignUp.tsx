@@ -19,118 +19,118 @@ import { useNavigate } from 'react-router-dom';
 const theme = createTheme();
 
 export default function SignUp() {
-	const [name, setName] = React.useState('');
-	const [email, setEmail] = React.useState('');
-	const [password, setPassword] = React.useState('');
-	//ここからはGraphQL Mutationの設定
-	const [signUp] = useMutation<{ createUser: User }>(SIGN_UP);
-	const [signIn] = useMutation<SignInResponse>(SIGN_IN);
-	const navigate = useNavigate();
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  //ここからはGraphQL Mutationの設定
+  const [signUp] = useMutation<{ createUser: User }>(SIGN_UP);
+  const [signIn] = useMutation<SignInResponse>(SIGN_IN);
+  const navigate = useNavigate();
 
-	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault(); //フォーム送信時にページをリロードさせない
-		const signUpInput = { name, email, password };
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); //フォーム送信時にページをリロードさせない
+    const signUpInput = { name, email, password };
 
-		try {
-			const result = await signUp({
-				variables: { createUserInput: signUpInput },
-			});
-			if (result.data?.createUser) {
-				const signInInput = { email, password };
-				const result = await signIn({
-					variables: { signInInput },
-				});
-				// token -> jwt
-				if (result.data) {
-					localStorage.setItem('token', result.data.signIn.accessToken);
-				}
-				localStorage.getItem('token') && navigate('/');
-			}
-	} catch (err: any  ) {
-			alert('ユーザーの作成に失敗しました');
-			return;
-		}
-	};
+    try {
+      const result = await signUp({
+        variables: { createUserInput: signUpInput },
+      });
+      if (result.data?.createUser) {
+        const signInInput = { email, password };
+        const result = await signIn({
+          variables: { signInInput },
+        });
+        // token -> jwt
+        if (result.data) {
+          localStorage.setItem('token', result.data.signIn.accessToken);
+        }
+        localStorage.getItem('token') && navigate('/');
+      }
+    } catch (err: any) {
+      alert('ユーザーの作成に失敗しました');
+      return;
+    }
+  };
 
-	return (
-		<ThemeProvider theme={theme}>
-			<Container component="main" maxWidth="xs">
-				<CssBaseline />
-				<Box
-					sx={{
-						marginTop: 8,
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-					}}
-				>
-					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-						<LockOutlinedIcon />
-					</Avatar>
-					<Typography component="h1" variant="h5">
-						Sign up
-					</Typography>
-					<Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-						<Grid container spacing={2}>
-							<Grid item xs={12}>
-								<TextField
-									autoComplete="name"
-									name="name"
-									required
-									fullWidth
-									id="name"
-									label="Name"
-									autoFocus
-									//useStateで管理する
-									value={name}
-									onChange={(e) => {
-										setName(e.target.value);
-									}}
-								/>
-							</Grid>
-							<Grid item xs={12}>
-								<TextField
-									required
-									fullWidth
-									id="email"
-									label="Email Address"
-									name="email"
-									autoComplete="email"
-									value={email}
-									onChange={(e) => {
-										setEmail(e.target.value);
-									}}
-								/>
-							</Grid>
-							<Grid item xs={12}>
-								<TextField
-									required
-									fullWidth
-									name="password"
-									label="Password"
-									type="password"
-									id="password"
-									autoComplete="new-password"
-									value={password}
-									onChange={(e) => {
-										setPassword(e.target.value);
-									}}
-								/>
-							</Grid>
-						</Grid>
-						<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-							Sign Up
-						</Button>
-						<Grid container justifyContent="flex-end">
-							<Grid item>
-								<Link href="/signin" variant="body2">
-									Already have an account? Sign in ;D
-								</Link>
-							</Grid>
-						</Grid>
-					</Box>
-				</Box>
-			</Container>
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="name"
+                  name="name"
+                  required
+                  fullWidth
+                  id="name"
+                  label="Name"
+                  autoFocus
+                  //useStateで管理する
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+              </Grid>
+            </Grid>
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              Sign Up
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href="/signin" variant="body2">
+                  Already have an account? Sign in ;D
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
 }

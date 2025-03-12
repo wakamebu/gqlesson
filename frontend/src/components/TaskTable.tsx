@@ -6,6 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Task } from '../types/task';
+import EditTask from './EditTask';
 
 // function createData(name: string, dueDate: string, status: string) {
 //   return { name, dueDate, status };
@@ -42,6 +43,7 @@ export default function TaskTable({ tasks, userId }: TaskTableProps) {
               </TableCell>
               <TableCell align="right">{task.dueDate}</TableCell>
               <TableCell align="right">{task.status}</TableCell>
+              <TableCell align="right"><EditTask task={task} userId={userId}/></TableCell>
             </TableRow>
           ))}
         </TableBody>

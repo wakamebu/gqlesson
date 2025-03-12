@@ -40,7 +40,6 @@ export default function TaskTable({ tasks, userId }: TaskTableProps) {
               <TableCell component="th" scope="task">
                 {task.name}
               </TableCell>
-              <TableCell align="right">{task.name}</TableCell>
               <TableCell align="right">{task.dueDate}</TableCell>
               <TableCell align="right">{task.status}</TableCell>
             </TableRow>
